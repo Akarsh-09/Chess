@@ -1,19 +1,17 @@
 import javax.swing.*;
-// import java.awt.*;
 import java.awt.event.*;
-// import java.util.*;
-// import javax.swing.Timer;
-// import javax.swing.border.Border;
 import java.util.ArrayList;
 
 public class Piece
 {
-    int color; // 1 -> White Piece 0 -> Black Piece, 2 -> Empty Place
+    int color; // 1 -> White Piece, 0 -> Black Piece, 2 -> Empty Place
     Integer type;
     JCheckBox cell;
     int PosX;
     int PosY;
     boolean isMoved = false;
+
+    public Piece() {}
 
     public Piece(JCheckBox cell, Integer type, int color, int PosX, int PosY)
     {
@@ -39,7 +37,7 @@ public class Piece
             String img = "Resources/Final/Brown.png";
             cell.setIcon(new ImageIcon(img));
         }
-        else
+        else if(color == 3)
         {
             String img = "Resources/Final/White.png";
             cell.setIcon(new ImageIcon(img));
@@ -54,10 +52,8 @@ public class Piece
 
     void showPossible(ActionEvent e, Piece CurrSel, VirtualBoard vB, ArrayList<Pair> possible)
     {
-        // System.out.println("Clicked");
         if(CurrSel.cell.isSelected())
         {
-            // System.out.println("Came inside");
             int x = CurrSel.PosX;
             int y = CurrSel.PosY;
             int type = CurrSel.type;
@@ -69,35 +65,14 @@ public class Piece
             // System.out.println("type = " + type);
             // System.out.println("color = " + color);
             // System.out.println("isMoved = " + isMoved);
-    
-            if(type == 0)
-            {
-                // if(possible.size() == 0)
-                // {
-                //     return possible;
-                // }
-                // else
-                // {
-                //     for(int i = 0; i < possible.size(); i++)
-                //     {
-                //         if(possible.get(i).first == x && possible.get(i).second == y)
-                //         {
-                //             move();
-                //         }
-                //     }
-                // }
-            }
-            else if(type == 1)
+
+            if(type == 1)
             {
                 Pawn pawn = new Pawn();
                 if(color == 0)
-                {
                     pawn.showB(vB, possible, new Pair(x, y), isMoved);
-                }
-                if(color == 1)
-                {
+                else
                     pawn.showW(vB, possible, new Pair(x, y), isMoved);
-                }
             }
             else if(type == 2)
             {
@@ -127,7 +102,6 @@ public class Piece
                 king.show(vB, possible, new Pair(x, y), color);
             }
         }
-        // return possible;
     }
 }
 
@@ -135,30 +109,24 @@ class Pawn
 {
     void showB(VirtualBoard vB, ArrayList<Pair> possible, Pair p, boolean isMoved)
     {
-        try {
-            if(isMoved == false)
+        if(isMoved == false)
+        {
+            if((p.second + 2 < 8) && vB.board[p.second + 2][p.first].type == 0 && vB.board[p.second + 1][p.first].type == 0)
             {
-                if((p.second + 2 < 8) && vB.board[p.second + 2][p.first].type == 0 && vB.board[p.second + 1][p.first].type == 0)
-                {
-                    possible.add(new Pair(p.first, p.second + 2));
-                }
-            }
-            if((p.second + 1 < 8) && vB.board[p.second + 1][p.first].type == 0)
-            {
-                possible.add(new Pair(p.first, p.second + 1));
-            }
-            if((p.second + 1 < 8) && (p.first + 1 < 8) && vB.board[p.second + 1][p.first + 1].color == 1)
-            {
-                possible.add(new Pair(p.first + 1, p.second + 1));
-            }
-            if((p.second + 1 < 8) && (p.first - 1 >= 0) && vB.board[p.second + 1][p.first - 1].color == 1)
-            {
-                possible.add(new Pair(p.first - 1, p.second + 1));
+                possible.add(new Pair(p.first, p.second + 2));
             }
         }
-        catch(Exception e)
+        if((p.second + 1 < 8) && vB.board[p.second + 1][p.first].type == 0)
         {
-            e.printStackTrace();
+            possible.add(new Pair(p.first, p.second + 1));
+        }
+        if((p.second + 1 < 8) && (p.first + 1 < 8) && vB.board[p.second + 1][p.first + 1].color == 1)
+        {
+            possible.add(new Pair(p.first + 1, p.second + 1));
+        }
+        if((p.second + 1 < 8) && (p.first - 1 >= 0) && vB.board[p.second + 1][p.first - 1].color == 1)
+        {
+            possible.add(new Pair(p.first - 1, p.second + 1));
         }
     }
     void showW(VirtualBoard vB, ArrayList<Pair> possible, Pair p, boolean isMoved)

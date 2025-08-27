@@ -1,9 +1,4 @@
 import javax.swing.*;
-// import java.awt.*;
-// import java.awt.event.*;
-// import java.util.*;
-// import javax.swing.Timer;
-// import javax.swing.border.Border;
 
 public class VirtualBoard
 {
@@ -29,61 +24,48 @@ public class VirtualBoard
             {
                 for(int j = 0; j < n; j++)
                 {
-                    Piece p = new Piece(new JCheckBox(), (Integer)1, 0, j, i);
-                    board[i][j] = p;
-                    // currentState[i][j] = 1;
+                    board[i][j] = new Piece(new JCheckBox(), (Integer)1, 0, j, i);
                 }
             }
             else if(i == n - 2)
             {
                 for(int j = 0; j < n; j++)
                 {
-                    Piece p = new Piece(new JCheckBox(), (Integer)1, 1, j, i);
-                    board[i][j] = p;
-                    // currentState[i][j] = 1;
+                    board[i][j] = new Piece(new JCheckBox(), (Integer)1, 1, j, i);
                 }
             }
-            else if(i >= 1 && i <= n - 2)
+            else if(i > 1 && i < n - 2)
             {
                 for(int j = 0; j < n; j++)
                 {
                     int a = i%2, b = j%2;
                     int color = 3 - (a^b);
-                    Piece p = new Piece(new JCheckBox(), (Integer)0, color, j, i);
-                    board[i][j] = p;
-                    // currentState[i][j] = 0;
+                    board[i][j] = new Piece(new JCheckBox(), (Integer)0, color, j, i);
                 }
             }
             else
             {
                 if(i == 0)
                 {
+
                     for(int j = 0; j < n - 3; j++)
                     {
-                        Piece p = new Piece(new JCheckBox(), (Integer)(j + 2), 0, j, i);
-                        board[i][j] = p;
-                        // currentState[i][j] = j + 2;
+                        board[i][j] = new Piece(new JCheckBox(), (Integer)(j + 2), 0, j, i);
                     }
                     for(int j = n - 3; j < n; j++)
                     {
-                        Piece p = new Piece(new JCheckBox(), (Integer)(9 - j), 0, j, i);
-                        board[i][j] = p;
-                        // currentState[i][j] = 9 - j;
+                        board[i][j] = new Piece(new JCheckBox(), (Integer)(9 - j), 0, j, i);
                     }
                 }
                 else
                 {
                     for(int j = 0; j < n - 3; j++)
                     {
-                        Piece p = new Piece(new JCheckBox(), (Integer)(j + 2), 1, j, i);
-                        board[i][j] = p;
-                        // currentState[i][j] = j + 2;
+                        board[i][j] = new Piece(new JCheckBox(), (Integer)(j + 2), 1, j, i);
                     }
                     for(int j = n - 3; j < n; j++)
                     {
-                        Piece p = new Piece(new JCheckBox(), (Integer)(9 - j), 1, j, i);
-                        board[i][j] = p;
-                        // currentState[i][j] = 9 - j;
+                        board[i][j] = new Piece(new JCheckBox(), (Integer)(9 - j), 1, j, i);
                     }
                 }
             }
