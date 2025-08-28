@@ -50,9 +50,9 @@ public class Piece
         throw new UnsupportedOperationException("Unimplemented method 'addActionListener'");
     }
 
-    void showPossible(ActionEvent e, Piece CurrSel, VirtualBoard vB, ArrayList<Pair> possible)
+    void showPossible(ActionEvent e, Piece CurrSel, VirtualBoard vB, ArrayList<Pair> possible, int swi)
     {
-        if(CurrSel.cell.isSelected())
+        if(CurrSel.cell.isSelected() || swi == 1)
         {
             int x = CurrSel.PosX;
             int y = CurrSel.PosY;
