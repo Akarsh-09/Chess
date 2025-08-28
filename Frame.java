@@ -10,7 +10,6 @@ public class Frame extends JFrame {
     JPanel CurrMove;
     JCheckBox WhiteMove;
     JCheckBox BlackMove;
-    // JLabel MoveText;
     int n = 8;
     JPanel[][] panels;
     VirtualBoard vB;
@@ -42,8 +41,6 @@ public class Frame extends JFrame {
         BlackMove = new JCheckBox();
         WhiteMove.setIcon(new ImageIcon("Resources/Final/WhiteMove.png"));
         BlackMove.setIcon(new ImageIcon("Resources/Final/Dissap.png"));
-        // MoveText = new JLabel("To move: White");
-        // MoveText.setFont(new Font("Serif", Font.BOLD, 40));
         WhiteMove.setBounds(0, 67, 40, 67);
         BlackMove.setBounds(0, 0, 40, 67);
         CurrMove.setBackground(new Color(255, 255, 255));
@@ -86,8 +83,6 @@ public class Frame extends JFrame {
             delta = 80 - delta;
         }
 
-        // this.add(BlackMove);
-        // this.add(WhiteMove);
         this.add(CurrMove);
         this.add(checkboard);
         this.add(mould);
